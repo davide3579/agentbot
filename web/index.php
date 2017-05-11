@@ -42,6 +42,12 @@ $app->get('/', function() use($app) {
         exit;
     }
 
+    echo "ciaooooooooooo";
+    echo "hub_verify_token";
+    echo $_REQUEST['hub_verify_token'];
+    echo "hub_challenge";
+    echo $_REQUEST['hub_challenge!'];
+
     // handle bot's anwser
     $input = json_decode(file_get_contents('php://input'), true);
     $senderId = $input['entry'][0]['messaging'][0]['sender']['id'];
