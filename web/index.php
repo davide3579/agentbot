@@ -37,6 +37,8 @@ $app->match("/", function (Request $request) use ($app) {
 //set Message
     if($messageText == "hi") {
         $answer = "Hello";
+    }elseif($messageText == "ciao"){
+        $answer = "ciao nicolò";
     }
 //send message to facebook bot
     $response = [
