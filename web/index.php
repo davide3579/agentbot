@@ -34,7 +34,7 @@ $app->get('/', function() use($app) {
 
 });
 
-$app->post('/bot', function (Request $request) {
+$app->post('/bot', function () use ($app) {
     // parameters
     $hubVerifyToken = 'winestore566';
     $accessToken =   "EAAS3BvhSDrkBAFHAZBu0FfkPt7pKSk6tzaYYdVxiFNYcYWYjtTyJl2TGZBMCZC7lzeuAoIoiqNU5msZCKwroyZAIcfsKJEhxtj8HF8gs0ZBlrV6JVPWeQacannMKGB5W1zScuq9KEIZADxZBjZCAO4TluwuGQBDAxYVymFag5KPZBjZBdGhRcpFpPnS";
