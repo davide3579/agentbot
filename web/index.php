@@ -28,7 +28,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
   'monolog.logfile' => 'php://stderr',
 ));
 
-$app->get('/', function() use($app) {
+$app->post('/', function() use($app) {
 
 //STARTING BOT CODE
 
@@ -85,5 +85,7 @@ $app->get('/', function() use($app) {
 
     //ENDING BOT CODE
 });
-
+$app->get('/bot', function() use($app) {
+    return $app->render('bot.php');
+});
 $app->run();
