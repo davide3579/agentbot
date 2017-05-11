@@ -69,9 +69,9 @@ $app->match("/", function (Request $request) use ($app) {
                 "template_type"=>"list",
                 "elements"=>[
                     [
-                        "title"=> "Classic T-Shirt Collection",
-                        "image_url"=> "https://www.cloudways.com/blog/wp-content/uploads/Migrating-Your-Symfony-Website-To-Cloudways-Banner.jpg",
-                        "subtitle"=> "See all our colors",
+                        "title"=> "Vino bianco",
+                        "image_url"=> "https://www.vinook.it/vino-bianco/vini-bianchi/vino-bianco-fermo_O1.jpg",
+                        "subtitle"=> "leggero,ma ubriacante",
                         "default_action"=> [
                             "type"=> "web_url",
                             "url"=> "https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
@@ -88,10 +88,10 @@ $app->match("/", function (Request $request) use ($app) {
                         ]
                     ],
                     [
-                        "title"=>"Welcome to Petes Hats",
+                        "title"=>"vino rosso",
                         "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
-                        "image_url"=>"https://www.cloudways.com/blog/wp-content/uploads/Migrating-Your-Symfony-Website-To-Cloudways-Banner.jpg",
-                        "subtitle"=>"Wve got the right hat for everyone.",
+                        "image_url"=>"https://upload.wikimedia.org/wikipedia/commons/8/88/Glass_of_Red_Wine_with_a_bottle_of_Red_Wine_-_Evan_Swigart.jpg",
+                        "subtitle"=>"Potente,dalla botta sicura",
                         "buttons"=>[
                             [
                                 "type"=>"web_url",
@@ -101,10 +101,10 @@ $app->match("/", function (Request $request) use ($app) {
                         ]
                     ],
                     [
-                        "title"=>"Welcome to Peters Hats",
+                        "title"=>"vino rosè",
                         "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
-                        "image_url"=>"https://www.cloudways.com/blog/wp-content/uploads/Migrating-Your-Symfony-Website-To-Cloudways-Banner.jpg",
-                        "subtitle"=>"Weve got the right hat for everyone.",
+                        "image_url"=>"http://media.bellevy.com/images/5000-10000/1375443549-14581819.jpg",
+                        "subtitle"=>"da fighetti,per ogni tipo di aperitivo.",
                         "buttons"=>[
                             [
                                 "type"=>"web_url",
