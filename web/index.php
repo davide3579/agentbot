@@ -30,7 +30,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 
 $app->get('/', function() use($app) {
 
-    return new Response("hi", 201);
+    return "hi";
 
 });
 
