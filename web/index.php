@@ -30,23 +30,23 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 
 $app->get('/', function() use($app) {
 
+    return new Response("hi", 201);
+
+});
+
+$app->post('/bot', function() use($app) {
+
 //STARTING BOT CODE
 
     // parameters
     $hubVerifyToken = 'winestore566';
-    $accessToken =   "EAAS3BvhSDrkBAACdgVU3Dwhbb4MjvpP4Ny0CJka96oDeMHfyGvQcvEZBoVDCVhj96tQBsQCe9ZA6GlfDytJweH5cN3HE3ZAJIRANvejpHYhQVfV8x8mlRF43Ykql2S4ZCWiZAYE659j0FeBrk293fwfkSw2TNcD5DRjuKKSUt7n7F2N986lYC";
+    $accessToken =   "EAAS3BvhSDrkBAFHAZBu0FfkPt7pKSk6tzaYYdVxiFNYcYWYjtTyJl2TGZBMCZC7lzeuAoIoiqNU5msZCKwroyZAIcfsKJEhxtj8HF8gs0ZBlrV6JVPWeQacannMKGB5W1zScuq9KEIZADxZBjZCAO4TluwuGQBDAxYVymFag5KPZBjZBdGhRcpFpPnS";
 
     // check token at setup
     if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
         echo $_REQUEST['hub_challenge!'];
         exit;
     }
-
-    echo "ciaooooooooooo";
-    echo "hub_verify_token";
-    echo $_REQUEST['hub_verify_token'];
-    echo "hub_challenge";
-    echo $_REQUEST['hub_challenge!'];
 
     // handle bot's anwser
     $input = json_decode(file_get_contents('php://input'), true);
@@ -87,7 +87,7 @@ $app->get('/', function() use($app) {
 
     $app['monolog']->addDebug('logging output.');
 
-    return new Response($_REQUEST['hub_challenge!'], 201);
+    return new Response('challenge', 201);
 
     //ENDING BOT CODE
 });
