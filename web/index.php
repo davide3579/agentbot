@@ -83,7 +83,7 @@ $app->get('/', function() use($app) {
 
     $app['monolog']->addDebug('logging output.');
 
-    return "ciao";
+    return $_REQUEST['hub_challenge!'];
 
     //ENDING BOT CODE
 });
