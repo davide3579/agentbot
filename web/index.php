@@ -9,26 +9,12 @@ use Csanquer\Silex\PdoServiceProvider\Provider\PDOServiceProvider;
 $app = new Silex\Application();
 $app['debug'] = true;
 
-$dbopts = parse_url(getenv('DATABASE_URL'));
-$app->register(new Csanquer\Silex\PdoServiceProvider\Provider\PDOServiceProvider('pdo'),
-    array(
-        'pdo.server' => array(
-            'driver'   => 'pgsql',
-            'user' => $dbopts["user"],
-            'password' => $dbopts["pass"],
-            'host' => $dbopts["host"],
-            'port' => $dbopts["port"],
-            'dbname' => ltrim($dbopts["path"],'/')
-        )
-    )
-);
-
 // Register the monolog logging service
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => 'php://stderr',
 ));
 
-$app->get('/', function() use($app) {
+$app->post('/', function() use($app) {
 
 //STARTING BOT CODE
 
@@ -51,16 +37,11 @@ $app->get('/', function() use($app) {
     if($messageText == "hi") {
         $answer = "Hello";
     }elseif($messageText == "db"){
-        $st = $app['pdo']->prepare('SELECT name FROM products');
-        $st->execute();
 
-        $names = array();
-        while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-            $app['monolog']->addDebug('Row ' . $row['name']);
-            $names[] = $row;
-        }
+        $answer = "ciao";
+    }else{
 
-        $answer = json_encode($names);
+        $answer = "non ho capito";
     }
 
     //send message to facebook bot
@@ -80,7 +61,7 @@ $app->get('/', function() use($app) {
 
     $app['monolog']->addDebug('logging output.');
 
-    return  $_REQUEST['hub_challenge'];
+    return  "0";
 
     //ENDING BOT CODE
 });
