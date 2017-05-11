@@ -33,8 +33,8 @@ $app->post('/', function() use($app) {
 //STARTING BOT CODE
 
     // parameters
-    $hubVerifyToken = 'bookstore566';
-    $accessToken =   "EAACCVOJW54QBAFpyFwW3gH5UhOhfP3Oo1x5m1bJyZA0lsLoeUnfr6dQb6vQ55NTSrpgSDUa1p4tP3ZAJafZAyHfUJTXNBFWVbEoy8yuH56OIANih6xZCFHrkQJQLWykomrBd1OPZCStEVSuk0re3ebjuWgFNxbY8UJZBqOcBIxsgZDZD";
+    $hubVerifyToken = 'agriturismo3579';
+    $accessToken =   "EAAS3BvhSDrkBAHacJxTBhj8HpY41S4KxEd4Sj0ZBE9ZANL0GsHoZAc6MiRw3ZBXBhgkdNxCW2T2wVy5wZCaCh30bkvpcP1m1cUlcZC63yubKZAZAIdPZCXXyLpFjC7GunXJw212KucbBjhGqST6Sav4k7qK9ZCoI0a3EZBA3nuDaT386HWlTgL1fBUh";
 
     // check token at setup
     if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
