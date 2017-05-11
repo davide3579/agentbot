@@ -18,7 +18,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/views',
 ));
 
-$app->post('/', function() use($app) {
+$app->get('/', function() use($app) {
 
     echo $_SERVER['REQUEST_METHOD'];
 
