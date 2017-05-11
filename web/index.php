@@ -28,7 +28,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => 'php://stderr',
 ));
 
-$app->post('/', function() use($app) {
+$app->get('/', function() use($app) {
 
 //STARTING BOT CODE
 
@@ -38,7 +38,7 @@ $app->post('/', function() use($app) {
 
     // check token at setup
     if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
-        echo $_REQUEST['hub_challenge!'];
+        echo $_REQUEST['hub_challenge'];
         exit;
     }
 
@@ -81,7 +81,7 @@ $app->post('/', function() use($app) {
 
     $app['monolog']->addDebug('logging output.');
 
-    return "";
+    return new Response('Thank you for your feedback!', 201);
 
     //ENDING BOT CODE
 });
