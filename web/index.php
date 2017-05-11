@@ -28,7 +28,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
   'monolog.logfile' => 'php://stderr',
 ));
 
-$app->post('/', function() use($app) {
+$app->get('/', function() use($app) {
 
 //STARTING BOT CODE
 
