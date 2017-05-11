@@ -18,9 +18,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/views',
 ));
 
-$app->get('/', function() use($app) {
-
-    echo $_SERVER['REQUEST_METHOD'];
+$app->match("/", function (Request $request) use ($app) {
 
     // parameters
     $hubVerifyToken = 'wineshop093748';
