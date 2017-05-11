@@ -28,12 +28,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => 'php://stderr',
 ));
 
-// Register view rendering
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/views',
-));
-
-$app->post('/', function() use($app) {
+$app->get('/', function() use($app) {
 
 //STARTING BOT CODE
 
@@ -89,10 +84,6 @@ $app->post('/', function() use($app) {
     return new Response('Thank you for your feedback!', 201);
 
     //ENDING BOT CODE
-});
-
-$app->get('/bot', function() use($app) {
-    return $app->render('bot.php');
 });
 
 $app->run();
