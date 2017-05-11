@@ -37,7 +37,7 @@ $app->get('/', function() use($app) {
     $accessToken =   "EAAS3BvhSDrkBAMZBDKpFg6NWBPwdqXD1z34FEbmNlEzbZCBBQ6eejZA68va21CtCBkizfab2fZAtbRONHH7bYimzm6FGoa7nk34vEc6XYU0WEtWdV0NZAht8tKHRKpReckozVudIiHA17WYZAC3jWyTU8GY8zvvAGU5xvFPc3cqKOhZAhTkDt25";
 
     // check token at setup
-    if ($_REQUEST['hub_verify_token'] == $hubVerifyToken) {
+    if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
         echo $_REQUEST['hub_challenge!'];
         exit;
     }
@@ -82,7 +82,7 @@ $app->get('/', function() use($app) {
     $app['monolog']->addDebug('logging output.');
 
     echo "yeeeeeeee!!!!!!!!!!!";
-    echo $_REQUEST;
+    echo json_encode($_REQUEST);
 
     return json_encode($_REQUEST);
 
