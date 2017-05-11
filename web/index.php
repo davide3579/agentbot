@@ -32,10 +32,37 @@ $app->match("/", function (Request $request) use ($app) {
     $input = json_decode(file_get_contents('php://input'), true);
     $senderId = $input['entry'][0]['messaging'][0]['sender']['id'];
     $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
+    $payload =  $input['entry'][0]['messaging'][0]['postback']['payload'];
 
     $response = null;
 //set Message
-    if($messageText == "today"){
+    if($messageText == "ciao"){
+        $answer = ["attachment"=>[
+            "type"=>"template",
+            "payload"=>[
+                "template_type"=>"button",
+                "text"=>"What do you want to do next?",
+                "buttons"=>[
+                    [
+                        "type"=>"web_url",
+                        "url"=>"https://petersapparel.parseapp.com",
+                        "title"=>"Show Website"
+                    ],
+                    [
+                        "type"=>"postback",
+                        "title"=>"categorie",
+                        "payload"=>"USER_DEFINED_PAYLOAD"
+                    ]
+                ]
+            ]
+        ]];
+        $response = [
+            'recipient' => [ 'id' => $senderId ],
+            'message' => $answer
+        ];
+    }
+
+    if($payload == "USER_DEFINED_PAYLOAD"){
         $answer = ["attachment"=>[
             "type"=>"template",
             "payload"=>[
@@ -61,10 +88,10 @@ $app->match("/", function (Request $request) use ($app) {
                         ]
                     ],
                     [
-                        "title"=>"Welcome to Peters Hats",
+                        "title"=>"Welcome to Petes Hats",
                         "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
                         "image_url"=>"https://www.cloudways.com/blog/wp-content/uploads/Migrating-Your-Symfony-Website-To-Cloudways-Banner.jpg",
-                        "subtitle"=>"Weve got the right hat for everyone.",
+                        "subtitle"=>"Wve got the right hat for everyone.",
                         "buttons"=>[
                             [
                                 "type"=>"web_url",
@@ -92,31 +119,7 @@ $app->match("/", function (Request $request) use ($app) {
         $response = [
             'recipient' => [ 'id' => $senderId ],
             'message' => $answer
-        ];}elseif($messageText == "ciao"){
-            $answer = ["attachment"=>[
-                "type"=>"template",
-                "payload"=>[
-                    "template_type"=>"button",
-                    "text"=>"What do you want to do next?",
-                    "buttons"=>[
-                        [
-                            "type"=>"web_url",
-                            "url"=>"https://petersapparel.parseapp.com",
-                            "title"=>"Show Website"
-                        ],
-                        [
-                            "type"=>"postback",
-                            "title"=>"categorie",
-                            "payload"=>"USER_DEFINED_PAYLOAD"
-                        ]
-                    ]
-                ]
-            ]];
-            $response = [
-                'recipient' => [ 'id' => $senderId ],
-                'message' => $answer
-            ];
-    }
+        ];}
     $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
