@@ -28,16 +28,13 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => 'php://stderr',
 ));
 
-$app->get('/', function() use($app) {
+$app->post('/', function() use($app) {
 
-    return "hi";
+//STARTING BOT CODE
 
-});
-
-$app->post('/bot', function () use ($app) {
     // parameters
-    $hubVerifyToken = 'winestore566';
-    $accessToken =   "EAAS3BvhSDrkBAFHAZBu0FfkPt7pKSk6tzaYYdVxiFNYcYWYjtTyJl2TGZBMCZC7lzeuAoIoiqNU5msZCKwroyZAIcfsKJEhxtj8HF8gs0ZBlrV6JVPWeQacannMKGB5W1zScuq9KEIZADxZBjZCAO4TluwuGQBDAxYVymFag5KPZBjZBdGhRcpFpPnS";
+    $hubVerifyToken = 'agriturismo3579';
+    $accessToken =   "EAAS3BvhSDrkBAMZBDKpFg6NWBPwdqXD1z34FEbmNlEzbZCBBQ6eejZA68va21CtCBkizfab2fZAtbRONHH7bYimzm6FGoa7nk34vEc6XYU0WEtWdV0NZAht8tKHRKpReckozVudIiHA17WYZAC3jWyTU8GY8zvvAGU5xvFPc3cqKOhZAhTkDt25";
 
     // check token at setup
     if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
@@ -64,7 +61,7 @@ $app->post('/bot', function () use ($app) {
             $names[] = $row;
         }
 
-        $answer = $names[0];
+        $answer = json_encode($names);
     }
 
     //send message to facebook bot
@@ -84,7 +81,7 @@ $app->post('/bot', function () use ($app) {
 
     $app['monolog']->addDebug('logging output.');
 
-    return new Response('challenge', 201);
+    return new Response('Thank you for your feedback!', 201);
 
     //ENDING BOT CODE
 });
