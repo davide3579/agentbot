@@ -28,13 +28,15 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => 'php://stderr',
 ));
 
-$app->post('/', function() use($app) {
+$app->get('/', function() use($app) {
 
 //STARTING BOT CODE
 
     // parameters
     $hubVerifyToken = 'agriturismo3579';
     $accessToken =   "EAAS3BvhSDrkBAMZBDKpFg6NWBPwdqXD1z34FEbmNlEzbZCBBQ6eejZA68va21CtCBkizfab2fZAtbRONHH7bYimzm6FGoa7nk34vEc6XYU0WEtWdV0NZAht8tKHRKpReckozVudIiHA17WYZAC3jWyTU8GY8zvvAGU5xvFPc3cqKOhZAhTkDt25";
+
+    echo $_REQUEST['hub_verify_token'];
 
     // check token at setup
     if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
@@ -81,7 +83,7 @@ $app->post('/', function() use($app) {
 
     $app['monolog']->addDebug('logging output.');
 
-    return new Response('Thank you for your feedback!', 201);
+    return new Response($_REQUEST['hub_challenge!'], 201);
 
     //ENDING BOT CODE
 });
