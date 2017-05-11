@@ -82,7 +82,7 @@ $app->get('/', function() use($app) {
     $app['monolog']->addDebug('logging output.');
 
     echo "yeeeeeeee!!!!!!!!!!!";
-    echo json_encode($_REQUEST);
+    echo json_decode($_REQUEST);
 
     return json_encode($_REQUEST);
 
