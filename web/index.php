@@ -36,9 +36,6 @@ $app->get('/', function() use($app) {
     $hubVerifyToken = 'agriturismo3579';
     $accessToken =   "EAAS3BvhSDrkBAMZBDKpFg6NWBPwdqXD1z34FEbmNlEzbZCBBQ6eejZA68va21CtCBkizfab2fZAtbRONHH7bYimzm6FGoa7nk34vEc6XYU0WEtWdV0NZAht8tKHRKpReckozVudIiHA17WYZAC3jWyTU8GY8zvvAGU5xvFPc3cqKOhZAhTkDt25";
 
-    echo $_REQUEST['hub_verify_token'];
-    echo $_REQUEST['hub_challenge!'];
-
     // check token at setup
     if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
         echo $_REQUEST['hub_challenge!'];
