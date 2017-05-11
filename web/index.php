@@ -20,6 +20,8 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 $app->post('/', function() use($app) {
 
+    echo $_SERVER['REQUEST_METHOD'];
+
     // parameters
     $hubVerifyToken = 'wineshop093748';
     $accessToken =   "EAAS3BvhSDrkBACpFikfYZCZCrHMFVdpKZAXqZCmwUPF0MHAHoYE9PHrEYTEJfLGqqF74n8mWbwVLEVCCdkdOhs0CvAFX5z9LRuiMW0ZCpqWfrJqH11ZAouP23Vw9m7J1vt5WbEwFODfRZBZA3OWmX9sZAaK5tcXjoTqYmpeNHgI5JTERWLFU1k2Rv";
