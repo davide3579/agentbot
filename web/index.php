@@ -83,7 +83,7 @@ $app->match("/", function (Request $request) use ($app) {
                             [
                                 "type"=>"web_url",
                                 "url"=>"https://petersfancybrownhats.com",
-                                "title"=>"View Website"
+                                "title"=>"dettagli"
                             ],
                         ]
                     ],
