@@ -35,12 +35,15 @@ $app->get('/', function() use($app) {
     // parameters
     $hubVerifyToken = 'agriturismo3579';
     $accessToken =   "EAAS3BvhSDrkBAMZBDKpFg6NWBPwdqXD1z34FEbmNlEzbZCBBQ6eejZA68va21CtCBkizfab2fZAtbRONHH7bYimzm6FGoa7nk34vEc6XYU0WEtWdV0NZAht8tKHRKpReckozVudIiHA17WYZAC3jWyTU8GY8zvvAGU5xvFPc3cqKOhZAhTkDt25";
-    echo $_REQUEST['hub_verify_token'];
+
     // check token at setup
     if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
         echo $_REQUEST['hub_challenge!'];
         exit;
     }
+
+    print_r("fhfhfhfhf");
+    print_r($_REQUEST);
 
     // handle bot's anwser
     $input = json_decode(file_get_contents('php://input'), true);
@@ -81,7 +84,7 @@ $app->get('/', function() use($app) {
 
     $app['monolog']->addDebug('logging output.');
 
-    return "jkkk";
+    return "";
 
     //ENDING BOT CODE
 });
