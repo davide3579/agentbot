@@ -25,7 +25,7 @@ $app->match("/", function (Request $request) use ($app) {
     $accessToken =   "EAAS3BvhSDrkBACpFikfYZCZCrHMFVdpKZAXqZCmwUPF0MHAHoYE9PHrEYTEJfLGqqF74n8mWbwVLEVCCdkdOhs0CvAFX5z9LRuiMW0ZCpqWfrJqH11ZAouP23Vw9m7J1vt5WbEwFODfRZBZA3OWmX9sZAaK5tcXjoTqYmpeNHgI5JTERWLFU1k2Rv";
 // check token at setup
     if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
-        echo $_REQUEST['hub_challenge!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'];
+        echo $_REQUEST['hub_challenge'];
         exit;
     }
 // handle bot's anwser
