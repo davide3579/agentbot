@@ -39,6 +39,60 @@ $app->match("/", function (Request $request) use ($app) {
         $answer = "Hello";
     }elseif($messageText == "ciao"){
         $answer = "ciao nicolò";
+    }elseif($messageText == "prodotti"){
+        $answer = ["attachment"=>[
+            "type"=>"template",
+            "payload"=>[
+                "template_type"=>"list",
+                "elements"=>[
+                    [
+                        "title"=> "Classic T-Shirt Collection",
+                        "image_url"=> "https://www.cloudways.com/blog/wp-content/uploads/Migrating-Your-Symfony-Website-To-Cloudways-Banner.jpg",
+                        "subtitle"=> "See all our colors",
+                        "default_action"=> [
+                            "type"=> "web_url",
+                            "url"=> "https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                            "webview_height_ratio"=> "tall",
+                            // "messenger_extensions"=> true,
+                            // "fallback_url"=> "https://peterssendreceiveapp.ngrok.io/"
+                        ],
+                        "buttons"=>[
+                            [
+                                "type"=>"web_url",
+                                "url"=>"https://petersfancybrownhats.com",
+                                "title"=>"View Website"
+                            ],
+                        ]
+                    ],
+                    [
+                        "title"=>"Welcome to Peters Hats",
+                        "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                        "image_url"=>"https://www.cloudways.com/blog/wp-content/uploads/Migrating-Your-Symfony-Website-To-Cloudways-Banner.jpg",
+                        "subtitle"=>"We ve got the right hat for everyone.",
+                        "buttons"=>[
+                            [
+                                "type"=>"web_url",
+                                "url"=>"https://petersfancybrownhats.com",
+                                "title"=>"View Website"
+                            ],
+                        ]
+                    ],
+                    [
+                        "title"=>"Welcome to Peter s Hats",
+                        "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                        "image_url"=>"https://www.cloudways.com/blog/wp-content/uploads/Migrating-Your-Symfony-Website-To-Cloudways-Banner.jpg",
+                        "subtitle"=>"We ve got the right hat for everyone.",
+                        "buttons"=>[
+                            [
+                                "type"=>"web_url",
+                                "url"=>"https://petersfancybrownhats.com",
+                                "title"=>"View Website"
+                            ],
+                        ]
+                    ]
+                ]
+            ]
+        ]];
     }
 //send message to facebook bot
     $response = [
