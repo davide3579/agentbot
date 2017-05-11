@@ -25,7 +25,12 @@ $app->register(new Csanquer\Silex\PdoServiceProvider\Provider\PDOServiceProvider
 
 // Register the monolog logging service
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
-  'monolog.logfile' => 'php://stderr',
+    'monolog.logfile' => 'php://stderr',
+));
+
+// Register view rendering
+$app->register(new Silex\Provider\TwigServiceProvider(), array(
+    'twig.path' => __DIR__.'/views',
 ));
 
 $app->post('/', function() use($app) {
@@ -33,8 +38,8 @@ $app->post('/', function() use($app) {
 //STARTING BOT CODE
 
     // parameters
-    $hubVerifyToken = 'agriturismo3579';
-    $accessToken =   "EAAS3BvhSDrkBAHacJxTBhj8HpY41S4KxEd4Sj0ZBE9ZANL0GsHoZAc6MiRw3ZBXBhgkdNxCW2T2wVy5wZCaCh30bkvpcP1m1cUlcZC63yubKZAZAIdPZCXXyLpFjC7GunXJw212KucbBjhGqST6Sav4k7qK9ZCoI0a3EZBA3nuDaT386HWlTgL1fBUh";
+    $hubVerifyToken = 'winestore566';
+    $accessToken =   "EAAS3BvhSDrkBAACdgVU3Dwhbb4MjvpP4Ny0CJka96oDeMHfyGvQcvEZBoVDCVhj96tQBsQCe9ZA6GlfDytJweH5cN3HE3ZAJIRANvejpHYhQVfV8x8mlRF43Ykql2S4ZCWiZAYE659j0FeBrk293fwfkSw2TNcD5DRjuKKSUt7n7F2N986lYC";
 
     // check token at setup
     if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
@@ -61,7 +66,7 @@ $app->post('/', function() use($app) {
             $names[] = $row;
         }
 
-        $answer = json_encode($names);
+        $answer = $names[0];
     }
 
     //send message to facebook bot
@@ -85,7 +90,9 @@ $app->post('/', function() use($app) {
 
     //ENDING BOT CODE
 });
+
 $app->get('/bot', function() use($app) {
     return $app->render('bot.php');
 });
+
 $app->run();
