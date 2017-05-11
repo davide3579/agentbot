@@ -14,7 +14,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => 'php://stderr',
 ));
 
-$app->post('/', function (Silex\Application $app, Symfony\Component\HttpFoundation\Request $request) {
+$app->get('/', function() use($app) {
 
 //STARTING BOT CODE
 
