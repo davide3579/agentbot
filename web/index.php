@@ -39,7 +39,7 @@ $app->get('/', function() use($app) {
     echo $_REQUEST['hub_challenge!'];
 
     // check token at setup
-    if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
+    if ($_REQUEST['hub_verify_token'] == $hubVerifyToken) {
         echo $_REQUEST['hub_challenge!'];
         exit;
     }
@@ -83,7 +83,7 @@ $app->get('/', function() use($app) {
 
     $app['monolog']->addDebug('logging output.');
 
-    return $_REQUEST['hub_challenge!'];
+    return "ciaso";
 
     //ENDING BOT CODE
 });
