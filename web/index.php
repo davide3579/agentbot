@@ -22,7 +22,7 @@ $app->match("/", function (Request $request) use ($app) {
 
     // parameters
     $hubVerifyToken = 'wineshop093748';
-    $accessToken =   "EAAS3BvhSDrkBACpFikfYZCZCrHMFVdpKZAXqZCmwUPF0MHAHoYE9PHrEYTEJfLGqqF74n8mWbwVLEVCCdkdOhs0CvAFX5z9LRuiMW0ZCpqWfrJqH11ZAouP23Vw9m7J1vt5WbEwFODfRZBZA3OWmX9sZAaK5tcXjoTqYmpeNHgI5JTERWLFU1k2Rv";
+    $accessToken =   "EAAbq0pvXHasBABud3spgZBYyyen4yJ4ujgivSekB1ZACCCyaclqyr96uWNhVe8gaqEy50H1I3SO6dedt1UzNIt2zYZAY1fMy0bDzLJ0sjjZAvZASBDVcZC8UF4SZCRmnt67kE7DyL4MUijxhvzcZA9s5pRcHFDqQ9gRj2LHBkFuJlFgDBJZBBKG6Y";
 // check token at setup
     if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
         echo $_REQUEST['hub_challenge'];
