@@ -156,12 +156,24 @@ $app->match("/", function (Request $request) use ($app) {
         $st->execute();
 
         $names = array();
+        $buttons = array();
+
         while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
             $app['monolog']->addDebug('Row-----categorie ' . $row['nome_cat']);
-            $names[] = $row;
+            $names[] = $row['nome_cat'];
+            $button = array("type"=>"postback", "title"=> $row['nome_cat'], "payload"=> $row['nome_cat']);
+            $buttons[] = $button;
         }
 
-        $answer = json_encode($names);
+        $answer = ["attachment"=>[
+            "type"=>"template",
+            "payload"=>[
+                "template_type"=>"button",
+                "text"=>"select one category",
+                "buttons"=>["' . $buttons . '"]
+            ]
+        ]];
+
         $response = [
             'recipient' => [ 'id' => $senderId ],
             'message' => $answer
