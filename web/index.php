@@ -165,7 +165,7 @@ $app->match("/", function (Request $request) use ($app) {
             $buttons[] = $button;
         }
 
-        $answer = array("attachment" => array("type"=>"template","payload"=>array("template_type"=>"button","text"=>"select category","buttons"=>array(array("type"=>"postback","title"=>"ciao","payload"=>"ciao")))));
+        $answer = array("attachment" => array("type"=>"template","payload"=>array("template_type"=>"button","text"=>"select category","buttons"=>array($buttons))));
 
         $response = [
             'recipient' => [ 'id' => $senderId ],
