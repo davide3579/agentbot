@@ -152,7 +152,32 @@ $app->match("/", function (Request $request) use ($app) {
             'message' => $answer
         ];}else if($payload == "CATEGORIES"){
 
+        $st = $app['pdo']->prepare('SELECT nome_cat FROM categorie');
+        $st->execute();
 
+        $names = array();
+        $buttons = array();
+
+        while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
+            $app['monolog']->addDebug('Row-----categorie ' . $row['nome_cat']);
+            $names[] = $row['nome_cat'];
+            $button = array("type"=>"postback", "title"=> $row['nome_cat'], "payload"=> $row['nome_cat']);
+            $buttons[] = $button;
+        }
+
+        $answer = ["attachment"=>[
+            "type"=>"template",
+            "payload"=>[
+                "template_type"=>"button",
+                "text"=>"select one category",
+                "buttons"=>["' . $buttons . '"]
+            ]
+        ]];
+
+        $response = [
+            'recipient' => [ 'id' => $senderId ],
+            'message' => $answer
+        ];
     }
     $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
     curl_setopt($ch, CURLOPT_POST, 1);
