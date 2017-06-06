@@ -67,7 +67,7 @@ $app->match("/", function (Request $request) use ($app) {
                     [
                         "type"=>"postback",
                         "title"=>"categorie",
-                        "payload"=>"USER_DEFINED_PAYLOAD"
+                        "payload"=>"CATEGORIES"
                     ]
                 ]
             ]
@@ -76,7 +76,7 @@ $app->match("/", function (Request $request) use ($app) {
             'recipient' => [ 'id' => $senderId ],
             'message' => $answer
         ];
-    }else if($messageText == "db"){
+    }elseif($messageText == "db"){
         $st = $app['pdo']->prepare('SELECT nome FROM prodotti');
         $st->execute();
 
@@ -150,7 +150,23 @@ $app->match("/", function (Request $request) use ($app) {
         $response = [
             'recipient' => [ 'id' => $senderId ],
             'message' => $answer
-        ];}
+        ];}elseif($payload == "CATEGORIES"){
+
+        $st = $app['pdo']->prepare('SELECT nome FROM categorie');
+        $st->execute();
+
+        $names = array();
+        while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
+            $app['monolog']->addDebug('Row ' . $row['nome']);
+            $names[] = $row;
+        }
+
+        $answer = json_encode($names);
+        $response = [
+            'recipient' => [ 'id' => $senderId ],
+            'message' => $answer
+        ];
+    }
     $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
