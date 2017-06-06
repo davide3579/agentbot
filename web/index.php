@@ -162,6 +162,7 @@ $app->match("/", function (Request $request) use ($app) {
             $app['monolog']->addDebug('Row-----categorie ' . $row['nome_cat']);
             $names[] = $row['nome_cat'];
             $button = array("type"=>"postback", "title"=> $row['nome_cat'], "payload"=> $row['nome_cat']);
+            $app['monolog']->addDebug('Row-----button ' . json_encode($button));
             $buttons[] = $button;
         }
 
@@ -170,18 +171,7 @@ $app->match("/", function (Request $request) use ($app) {
             "payload"=>[
                 "template_type"=>"button",
                 "text"=>"select one category",
-                "buttons"=>[
-                    [
-                        "type"=>"web_url",
-                        "url"=>"https://petersapparel.parseapp.com",
-                        "title"=>"Show pouoi"
-                    ],
-                    [
-                        "type"=>"postback",
-                        "title"=>"kkkk",
-                        "payload"=>"CATEGORIES"
-                    ]
-                ]
+                "buttons"=>["' . $buttons . '"]
             ]
         ]];
 
