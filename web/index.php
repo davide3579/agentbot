@@ -168,7 +168,7 @@ $app->match("/", function (Request $request) use ($app) {
 
         $app['monolog']->addDebug(json_encode($buttons));
 
-        $answer = array("attachment" => array("type"=>"template","payload"=>array("template_type"=>"button","text"=>"select category","buttons"=>array($buttons))));
+        $answer = array("attachment" => array("type"=>"template","payload"=>array("template_type"=>"button","text"=>"select category","buttons"=>$buttons)));
 
         $response = [
             'recipient' => [ 'id' => $senderId ],
