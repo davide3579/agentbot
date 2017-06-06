@@ -170,7 +170,18 @@ $app->match("/", function (Request $request) use ($app) {
             "payload"=>[
                 "template_type"=>"button",
                 "text"=>"select one category",
-                "buttons"=>["' . $buttons . '"]
+                "buttons"=>[
+                    [
+                        "type"=>"web_url",
+                        "url"=>"https://petersapparel.parseapp.com",
+                        "title"=>"Show pouoi"
+                    ],
+                    [
+                        "type"=>"postback",
+                        "title"=>"kkkk",
+                        "payload"=>"CATEGORIES"
+                    ]
+                ]
             ]
         ]];
 
