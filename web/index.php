@@ -152,12 +152,12 @@ $app->match("/", function (Request $request) use ($app) {
             'message' => $answer
         ];}else if($payload == "CATEGORIES"){
 
-        $st = $app['pdo']->prepare('SELECT nome FROM categorie');
+        $st = $app['pdo']->prepare('SELECT nome_cat FROM categorie');
         $st->execute();
 
         $names = array();
         while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-            $app['monolog']->addDebug('Row-----categorie ' . $row['nome']);
+            $app['monolog']->addDebug('Row-----categorie ' . $row['nome_cat']);
             $names[] = $row;
         }
 
