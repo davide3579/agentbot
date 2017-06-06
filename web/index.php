@@ -157,7 +157,7 @@ $app->match("/", function (Request $request) use ($app) {
 
         $names = array();
         while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-            $app['monolog']->addDebug('Row ' . $row['nome']);
+            $app['monolog']->addDebug('Row-----categorie ' . $row['nome']);
             $names[] = $row;
         }
 
