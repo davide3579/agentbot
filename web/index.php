@@ -76,7 +76,7 @@ $app->match("/", function (Request $request) use ($app) {
             'recipient' => [ 'id' => $senderId ],
             'message' => $answer
         ];
-    }elseif($messageText == "db"){
+    }else if($messageText == "db"){
         $st = $app['pdo']->prepare('SELECT nome FROM prodotti');
         $st->execute();
 
@@ -150,7 +150,7 @@ $app->match("/", function (Request $request) use ($app) {
         $response = [
             'recipient' => [ 'id' => $senderId ],
             'message' => $answer
-        ];}elseif($payload == "CATEGORIES"){
+        ];}else if($payload == "CATEGORIES"){
 
         $st = $app['pdo']->prepare('SELECT nome FROM categorie');
         $st->execute();
