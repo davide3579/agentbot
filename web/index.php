@@ -162,7 +162,6 @@ $app->match("/", function (Request $request) use ($app) {
             $app['monolog']->addDebug('Row-----categorie ' . $row['nome_cat']);
             $names[] = $row['nome_cat'];
             $button = array("type"=>"postback", "title"=> $row['nome_cat'], "payload"=> $row['nome_cat']);
-            $buttons[] = $button;
             array_push($buttons,$button);
         }
 
