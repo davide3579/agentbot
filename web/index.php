@@ -169,21 +169,11 @@ $app->match("/", function (Request $request) use ($app) {
             "type"=>"template",
             "payload"=>[
                 "template_type"=>"button",
-                "text"=>"What do you want to do next?",
-                "buttons"=>[
-                    [
-                        "type"=>"web_url",
-                        "url"=>"https://petersapparel.parseapp.com",
-                        "title"=>"gneo"
-                    ],
-                    [
-                        "type"=>"postback",
-                        "title"=>"zio",
-                        "payload"=>"CATEGORIES"
-                    ]
-                ]
+                "text"=>"select one category",
+                "buttons"=>["' . $buttons . '"]
             ]
         ]];
+
         $response = [
             'recipient' => [ 'id' => $senderId ],
             'message' => $answer
