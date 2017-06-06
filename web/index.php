@@ -83,13 +83,13 @@ $app->match("/", function (Request $request) use ($app) {
         $names = array();
         while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
             $app['monolog']->addDebug('Row ' . $row['nome']);
-            $names[] = $row['nome'];
+            $names[] = $row;
         }
 
         $answer = json_encode($names);
         $response = [
             'recipient' => [ 'id' => $senderId ],
-            'message' => $answer
+            'message' => $names[0]['nome']
         ];
     }
 
