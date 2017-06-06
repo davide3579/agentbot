@@ -162,18 +162,10 @@ $app->match("/", function (Request $request) use ($app) {
             $app['monolog']->addDebug('Row-----categorie ' . $row['nome_cat']);
             $names[] = $row['nome_cat'];
             $button = array("type"=>"postback", "title"=> $row['nome_cat'], "payload"=> $row['nome_cat']);
-            $app['monolog']->addDebug('Row-----button ' . json_encode($button));
             $buttons[] = $button;
         }
 
-        $answer = ["attachment"=>[
-            "type"=>"template",
-            "payload"=>[
-                "template_type"=>"button",
-                "text"=>"select one category",
-                "buttons"=>["' . $buttons . '"]
-            ]
-        ]];
+        $answer = array("attachment" => array("type"=>"template","payload"=>array("template_type"=>"button","text"=>"select category","buttons"=>array(array("type"=>"postback","title"=>"ciao","payload"=>"ciao")))));
 
         $response = [
             'recipient' => [ 'id' => $senderId ],
