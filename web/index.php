@@ -75,7 +75,7 @@ $app->match("/", function (Request $request) use ($app) {
             'message' => $answer
         ];
     }else if($messageText == "db"){
-        $st = $app['pdo']->prepare('SELECT name FROM products');
+        $st = $app['pdo']->prepare('SELECT name FROM prodotti');
         $st->execute();
 
         $names = array();
