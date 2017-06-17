@@ -132,8 +132,8 @@ $app->match("/", function (Request $request) use ($app) {
                 "elements"=>[
                     [
                         "title"=> "Gavi Cortese",
-                        "image_url"=> "https://www.vinook.it/vino-bianco/vini-bianchi/vino-bianco-fermo_O1.jpg",
-                        "subtitle"=> "colore paglierino più o meno intenso; odore delicato; sapore asciutto, gradevole, di gusto fresco ed armonico.",
+                        "image_url"=> "http://www.grandibottiglie.com/shop/951-706-thickbox/cortese-di-gavi-1982.jpg",
+                        "subtitle"=> "colore paglierino più o meno intenso; odore delicato; sapore asciutto.",
                         "default_action"=> [
                             "type"=> "web_url",
                             "url"=> "https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
@@ -152,8 +152,8 @@ $app->match("/", function (Request $request) use ($app) {
                     [
                         "title"=>"Moscato di Asti",
                         "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
-                        "image_url"=>"https://upload.wikimedia.org/wikipedia/commons/8/88/Glass_of_Red_Wine_with_a_bottle_of_Red_Wine_-_Evan_Swigart.jpg",
-                        "subtitle"=>"colore paglierino più o meno intenso, dalla brillante limpidezza, con un odore fragrante; sapore dolce, aromatico.",
+                        "image_url"=>"http://static.lacavestore.com/817/moscato-d-asti-docg-pelassa-2016.jpg",
+                        "subtitle"=>"colore paglierino più o meno intenso, dalla brillante limpidezza.",
                         "buttons"=>[
                             [
                                 "type"=>"postback",
@@ -166,7 +166,123 @@ $app->match("/", function (Request $request) use ($app) {
                         "title"=>"Arneis",
                         "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
                         "image_url"=>"https://atmosferaitaliana.it/26276-large_default/roero-arneis-docg.jpg",
-                        "subtitle"=>"odore delicato, fresco e con eventuale sentore di legno; sapore elegante, armonico ed eventualmente tannico.",
+                        "subtitle"=>"odore delicato, fresco e con eventuale sentore di legno; sapore elegante.",
+                        "buttons"=>[
+                            [
+                                "type"=>"postback",
+                                "title"=>"ordina",
+                                "payload"=>"ORDER"
+                            ],
+                        ]
+                    ]
+                ]
+            ]
+        ]];
+        $response = [
+            'recipient' => [ 'id' => $senderId ],
+            'message' => $answer
+        ];
+    }elseif($payload == "RED"){
+        $answer = ["attachment"=>[
+            "type"=>"template",
+            "payload"=>[
+                "template_type"=>"list",
+                "elements"=>[
+                    [
+                        "title"=> "Dolcetto di Acqui",
+                        "image_url"=> "http://marencovini.com/wp-content/uploads/2015/05/resized-marchesa.tif.jpg",
+                        "subtitle"=> "colore rosso rubino intenso, con tendenza al rosso mattone con l’invecchiamento.",
+                        "default_action"=> [
+                            "type"=> "web_url",
+                            "url"=> "https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                            "webview_height_ratio"=> "tall",
+                            // "messenger_extensions"=> true,
+                            // "fallback_url"=> "https://peterssendreceiveapp.ngrok.io/"
+                        ],
+                        "buttons"=>[
+                            [
+                                "type"=>"postback",
+                                "title"=>"ordina",
+                                "payload"=>"ORDER"
+                            ],
+                        ]
+                    ],
+                    [
+                        "title"=>"Barbera del Monferrato",
+                        "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                        "image_url"=>"http://www.viniolivetta.it/wp-content/uploads/2015/03/barbera-monferrato1-924x784.jpg",
+                        "subtitle"=>"Ha un colore rosso rubino più o meno intenso; odore vinoso; sapore asciutto.",
+                        "buttons"=>[
+                            [
+                                "type"=>"postback",
+                                "title"=>"ordina",
+                                "payload"=>"ORDER"
+                            ],
+                        ]
+                    ],
+                    [
+                        "title"=>"Barolo",
+                        "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                        "image_url"=>"http://www.acquabuona.it/wp-content/uploads/2010/09/brezza_cannubi-eti.jpg",
+                        "subtitle"=>" Ha un colore rosso granato con riflessi arancioni; profumo caratteristico, etereo, gradevole, intenso",
+                        "buttons"=>[
+                            [
+                                "type"=>"postback",
+                                "title"=>"ordina",
+                                "payload"=>"ORDER"
+                            ],
+                        ]
+                    ]
+                ]
+            ]
+        ]];
+        $response = [
+            'recipient' => [ 'id' => $senderId ],
+            'message' => $answer
+        ];
+    }elseif($payload == "PINK"){
+        $answer = ["attachment"=>[
+            "type"=>"template",
+            "payload"=>[
+                "template_type"=>"list",
+                "elements"=>[
+                    [
+                        "title"=> "Langhe Rosato",
+                        "image_url"=> "http://broccardo.it/wp-content/uploads/2015/04/scont-rosato-131x500.png",
+                        "subtitle"=> "Vino rosato ottenuto principalmente dalle uve dei vitigni Barbera, Dolcetto e Nebbiolo",
+                        "default_action"=> [
+                            "type"=> "web_url",
+                            "url"=> "https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                            "webview_height_ratio"=> "tall",
+                            // "messenger_extensions"=> true,
+                            // "fallback_url"=> "https://peterssendreceiveapp.ngrok.io/"
+                        ],
+                        "buttons"=>[
+                            [
+                                "type"=>"postback",
+                                "title"=>"ordina",
+                                "payload"=>"ORDER"
+                            ],
+                        ]
+                    ],
+                    [
+                        "title"=>"Albugnano Rosato",
+                        "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                        "image_url"=>"http://www.lacortedelbarbio.it/sites/default/files/styles/large/public/fasoglio_albugnanorose.JPG?itok=z-Y7r2QA",
+                        "subtitle"=>"Ottenuto da uve Nebbiolo in misura pari ad almeno l’85% e da altri vitigni tipici dell’Astigiano per la parte restante.",
+                        "buttons"=>[
+                            [
+                                "type"=>"postback",
+                                "title"=>"ordina",
+                                "payload"=>"ORDER"
+                            ],
+                        ]
+                    ],
+                    [
+                        "title"=>"Chiaretto",
+                        "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                        "image_url"=>"http://www.vinievino.com/images/784402946/benazzoli-jpg.jpg?MjUweDUwMDo6YXV0bzo3NDY5NWU4OGQxZDFjZWQ5MTc1YTc1MTk1ZjMzYWY3Nw%3D%3D",
+                        "subtitle"=>"Odore vinoso, delicato, gradevole.",
                         "buttons"=>[
                             [
                                 "type"=>"postback",
