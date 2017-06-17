@@ -10,20 +10,6 @@ use Csanquer\Silex\PdoServiceProvider\Provider\PDOServiceProvider;
 $app = new Silex\Application();
 $app['debug'] = true;
 
-$dbopts = parse_url(getenv('DATABASE_URL'));
-$app->register(new Csanquer\Silex\PdoServiceProvider\Provider\PDOServiceProvider('pdo'),
-    array(
-        'pdo.server' => array(
-            'driver'   => 'pgsql',
-            'user' => $dbopts["user"],
-            'password' => $dbopts["pass"],
-            'host' => $dbopts["host"],
-            'port' => $dbopts["port"],
-            'dbname' => ltrim($dbopts["path"],'/')
-        )
-    )
-);
-
 // Register the monolog logging service
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => 'php://stderr',
@@ -36,7 +22,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 $app->match("/", function (Request $request) use ($app) {
 
-    // parameters
+// parameters
     $hubVerifyToken = 'wineshop093748';
     $accessToken =   "EAAbq0pvXHasBABud3spgZBYyyen4yJ4ujgivSekB1ZACCCyaclqyr96uWNhVe8gaqEy50H1I3SO6dedt1UzNIt2zYZAY1fMy0bDzLJ0sjjZAvZASBDVcZC8UF4SZCRmnt67kE7DyL4MUijxhvzcZA9s5pRcHFDqQ9gRj2LHBkFuJlFgDBJZBBKG6Y";
 // check token at setup
@@ -44,6 +30,7 @@ $app->match("/", function (Request $request) use ($app) {
         echo $_REQUEST['hub_challenge'];
         exit;
     }
+
 // handle bot's anwser
     $input = json_decode(file_get_contents('php://input'), true);
     $senderId = $input['entry'][0]['messaging'][0]['sender']['id'];
@@ -75,21 +62,6 @@ $app->match("/", function (Request $request) use ($app) {
         $response = [
             'recipient' => [ 'id' => $senderId ],
             'message' => $answer
-        ];
-    }else if($messageText == "db"){
-        $st = $app['pdo']->prepare('SELECT nome FROM prodotti');
-        $st->execute();
-
-        $names = array();
-        while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-            $app['monolog']->addDebug('Row ' . $row['nome']);
-            $names[] = $row;
-        }
-
-        $answer = json_encode($names);
-        $response = [
-            'recipient' => [ 'id' => $senderId ],
-            'message' => $names[0]['nome']
         ];
     }
 
@@ -150,25 +122,62 @@ $app->match("/", function (Request $request) use ($app) {
         $response = [
             'recipient' => [ 'id' => $senderId ],
             'message' => $answer
-        ];}else if($payload == "CATEGORIES"){
+        ];}
+    else if($payload == "CATEGORIES"){
 
-        $st = $app['pdo']->prepare('SELECT nome_cat FROM categorie');
-        $st->execute();
-
-        $names = array();
-        $buttons = array();
-
-        while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-            $app['monolog']->addDebug('Row-----categorie ' . $row['nome_cat']);
-            $names[] = $row['nome_cat'];
-            $button = array("type"=>"postback", "title"=> $row['nome_cat'], "payload"=> $row['nome_cat']);
-            array_push($buttons,$button);
-        }
-
-        $app['monolog']->addDebug(json_encode($buttons));
-
-        $answer = array("attachment" => array("type"=>"template","payload"=>array("template_type"=>"button","text"=>"select category","buttons"=>$buttons)));
-
+        $answer = ["attachment"=>[
+            "type"=>"template",
+            "payload"=>[
+                "template_type"=>"list",
+                "elements"=>[
+                    [
+                        "title"=> "Vini bianchi",
+                        "image_url"=> "https://www.vinook.it/vino-bianco/vini-bianchi/vino-bianco-fermo_O1.jpg",
+                        "subtitle"=> "leggero,ma ubriacante",
+                        "default_action"=> [
+                            "type"=> "web_url",
+                            "url"=> "https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                            "webview_height_ratio"=> "tall",
+                            // "messenger_extensions"=> true,
+                            // "fallback_url"=> "https://peterssendreceiveapp.ngrok.io/"
+                        ],
+                        "buttons"=>[
+                            [
+                                "type"=>"web_url",
+                                "url"=>"https://petersfancybrownhats.com",
+                                "title"=>"dettagli"
+                            ],
+                        ]
+                    ],
+                    [
+                        "title"=>"vini rossi",
+                        "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                        "image_url"=>"https://upload.wikimedia.org/wikipedia/commons/8/88/Glass_of_Red_Wine_with_a_bottle_of_Red_Wine_-_Evan_Swigart.jpg",
+                        "subtitle"=>"Potente,dalla botta sicura",
+                        "buttons"=>[
+                            [
+                                "type"=>"web_url",
+                                "url"=>"https://petersfancybrownhats.com",
+                                "title"=>"View Website"
+                            ],
+                        ]
+                    ],
+                    [
+                        "title"=>"vini rosè",
+                        "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                        "image_url"=>"http://media.bellevy.com/images/5000-10000/1375443549-14581819.jpg",
+                        "subtitle"=>"da fighetti,per ogni tipo di aperitivo.",
+                        "buttons"=>[
+                            [
+                                "type"=>"web_url",
+                                "url"=>"https://petersfancybrownhats.com",
+                                "title"=>"View Website"
+                            ],
+                        ]
+                    ]
+                ]
+            ]
+        ]];
         $response = [
             'recipient' => [ 'id' => $senderId ],
             'message' => $answer
