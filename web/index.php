@@ -298,6 +298,25 @@ $app->match("/", function (Request $request) use ($app) {
             'recipient' => [ 'id' => $senderId ],
             'message' => $answer
         ];
+    }elseif($payload == "ORDER"){
+        $answer = ["attachment"=>[
+            "type"=>"template",
+            "payload"=>[
+                "template_type"=>"button",
+                "text"=>"Ordine inviato con successo!Cosa desideri fare ora?",
+                "buttons"=>[
+                    [
+                        "type"=>"postback",
+                        "title"=>"scegli un altro prodotto per categorie",
+                        "payload"=>"CATEGORIES"
+                    ]
+                ]
+            ]
+        ]];
+        $response = [
+            'recipient' => [ 'id' => $senderId ],
+            'message' => $answer
+        ];
     }
     $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
     curl_setopt($ch, CURLOPT_POST, 1);
