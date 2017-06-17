@@ -44,7 +44,7 @@ $app->match("/", function (Request $request) use ($app) {
             "type"=>"template",
             "payload"=>[
                 "template_type"=>"button",
-                "text"=>"What do you want to do next?",
+                "text"=>"Che cosa vuoi fare?",
                 "buttons"=>[
                     [
                         "type"=>"web_url",
@@ -53,7 +53,7 @@ $app->match("/", function (Request $request) use ($app) {
                     ],
                     [
                         "type"=>"postback",
-                        "title"=>"categorie",
+                        "title"=>"scegli per categorie",
                         "payload"=>"CATEGORIES"
                     ]
                 ]
@@ -65,65 +65,7 @@ $app->match("/", function (Request $request) use ($app) {
         ];
     }
 
-    if($payload == "USER_DEFINED_PAYLOAD"){
-        $answer = ["attachment"=>[
-            "type"=>"template",
-            "payload"=>[
-                "template_type"=>"list",
-                "elements"=>[
-                    [
-                        "title"=> "Vino bianco",
-                        "image_url"=> "https://www.vinook.it/vino-bianco/vini-bianchi/vino-bianco-fermo_O1.jpg",
-                        "subtitle"=> "leggero,ma ubriacante",
-                        "default_action"=> [
-                            "type"=> "web_url",
-                            "url"=> "https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
-                            "webview_height_ratio"=> "tall",
-                            // "messenger_extensions"=> true,
-                            // "fallback_url"=> "https://peterssendreceiveapp.ngrok.io/"
-                        ],
-                        "buttons"=>[
-                            [
-                                "type"=>"web_url",
-                                "url"=>"https://petersfancybrownhats.com",
-                                "title"=>"dettagli"
-                            ],
-                        ]
-                    ],
-                    [
-                        "title"=>"vino rosso",
-                        "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
-                        "image_url"=>"https://upload.wikimedia.org/wikipedia/commons/8/88/Glass_of_Red_Wine_with_a_bottle_of_Red_Wine_-_Evan_Swigart.jpg",
-                        "subtitle"=>"Potente,dalla botta sicura",
-                        "buttons"=>[
-                            [
-                                "type"=>"web_url",
-                                "url"=>"https://petersfancybrownhats.com",
-                                "title"=>"View Website"
-                            ],
-                        ]
-                    ],
-                    [
-                        "title"=>"vino rosè",
-                        "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
-                        "image_url"=>"http://media.bellevy.com/images/5000-10000/1375443549-14581819.jpg",
-                        "subtitle"=>"da fighetti,per ogni tipo di aperitivo.",
-                        "buttons"=>[
-                            [
-                                "type"=>"web_url",
-                                "url"=>"https://petersfancybrownhats.com",
-                                "title"=>"View Website"
-                            ],
-                        ]
-                    ]
-                ]
-            ]
-        ]];
-        $response = [
-            'recipient' => [ 'id' => $senderId ],
-            'message' => $answer
-        ];}
-    else if($payload == "CATEGORIES"){
+    if($payload == "CATEGORIES"){
 
         $answer = ["attachment"=>[
             "type"=>"template",
@@ -143,9 +85,9 @@ $app->match("/", function (Request $request) use ($app) {
                         ],
                         "buttons"=>[
                             [
-                                "type"=>"web_url",
-                                "url"=>"https://petersfancybrownhats.com",
-                                "title"=>"dettagli"
+                                "type"=>"postback",
+                                "title"=>"mostra prodotti",
+                                "payload"=>"WHITE"
                             ],
                         ]
                     ],
@@ -156,9 +98,9 @@ $app->match("/", function (Request $request) use ($app) {
                         "subtitle"=>"Potente,dalla botta sicura",
                         "buttons"=>[
                             [
-                                "type"=>"web_url",
-                                "url"=>"https://petersfancybrownhats.com",
-                                "title"=>"View Website"
+                                "type"=>"postback",
+                                "title"=>"mostra prodotti",
+                                "payload"=>"RED"
                             ],
                         ]
                     ],
@@ -169,9 +111,67 @@ $app->match("/", function (Request $request) use ($app) {
                         "subtitle"=>"da fighetti,per ogni tipo di aperitivo.",
                         "buttons"=>[
                             [
-                                "type"=>"web_url",
-                                "url"=>"https://petersfancybrownhats.com",
-                                "title"=>"View Website"
+                                "type"=>"postback",
+                                "title"=>"mostra prodotti",
+                                "payload"=>"PINK"
+                            ],
+                        ]
+                    ]
+                ]
+            ]
+        ]];
+        $response = [
+            'recipient' => [ 'id' => $senderId ],
+            'message' => $answer
+        ];
+    }elseif($payload == "WHITE"){
+        $answer = ["attachment"=>[
+            "type"=>"template",
+            "payload"=>[
+                "template_type"=>"list",
+                "elements"=>[
+                    [
+                        "title"=> "Gavi Cortese",
+                        "image_url"=> "https://www.vinook.it/vino-bianco/vini-bianchi/vino-bianco-fermo_O1.jpg",
+                        "subtitle"=> "colore paglierino più o meno intenso; odore delicato; sapore asciutto, gradevole, di gusto fresco ed armonico.",
+                        "default_action"=> [
+                            "type"=> "web_url",
+                            "url"=> "https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                            "webview_height_ratio"=> "tall",
+                            // "messenger_extensions"=> true,
+                            // "fallback_url"=> "https://peterssendreceiveapp.ngrok.io/"
+                        ],
+                        "buttons"=>[
+                            [
+                                "type"=>"postback",
+                                "title"=>"ordina",
+                                "payload"=>"ORDER"
+                            ],
+                        ]
+                    ],
+                    [
+                        "title"=>"Moscato di Asti",
+                        "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                        "image_url"=>"https://upload.wikimedia.org/wikipedia/commons/8/88/Glass_of_Red_Wine_with_a_bottle_of_Red_Wine_-_Evan_Swigart.jpg",
+                        "subtitle"=>"colore paglierino più o meno intenso, dalla brillante limpidezza, con un odore fragrante; sapore dolce, aromatico.",
+                        "buttons"=>[
+                            [
+                                "type"=>"postback",
+                                "title"=>"ordina",
+                                "payload"=>"ORDER"
+                            ],
+                        ]
+                    ],
+                    [
+                        "title"=>"Arneis",
+                        "item_url"=>"https://www.cloudways.com/blog/migrate-symfony-from-cpanel-to-cloud-hosting/",
+                        "image_url"=>"https://atmosferaitaliana.it/26276-large_default/roero-arneis-docg.jpg",
+                        "subtitle"=>"odore delicato, fresco e con eventuale sentore di legno; sapore elegante, armonico ed eventualmente tannico.",
+                        "buttons"=>[
+                            [
+                                "type"=>"postback",
+                                "title"=>"ordina",
+                                "payload"=>"ORDER"
                             ],
                         ]
                     ]
